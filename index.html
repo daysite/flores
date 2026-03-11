@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Regalo para Cande</title>
+
+<style>
+
+body{
+margin:0;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+font-family:Arial,sans-serif;
+background:linear-gradient(135deg,#ffd1dc,#ff9aa2);
+}
+
+.card{
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+text-align:center;
+width:340px;
+position:relative;
+overflow:hidden;
+}
+
+p{color:#666;}
+
+.buttons{
+margin-top:20px;
+display:flex;
+justify-content:center;
+gap:30px;
+position:relative;
+}
+
+button{
+padding:6px 14px;
+border-radius:12px;
+border:none;
+cursor:pointer;
+font-size:14px;
+transition:0.2s;
+}
+
+.yes{
+background:#ff6f91;
+color:white;
+}
+
+.no{
+background:white;
+border:1px solid #ccc;
+position:relative;
+}
+
+.letter{
+display:none;
+margin-top:20px;
+animation:appear 1s ease forwards;
+}
+
+.letterBox{
+background:#fffafc;
+padding:20px;
+border-radius:15px;
+box-shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+
+.bouquet{
+margin-top:20px;
+display:none;
+animation:appear 1.2s ease forwards;
+}
+
+svg{
+margin-top:10px;
+filter:drop-shadow(0 8px 12px rgba(0,0,0,0.15));
+}
+
+@keyframes appear{
+from{opacity:0;transform:scale(0.8) translateY(20px);}
+to{opacity:1;transform:scale(1) translateY(0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card">
+
+<!-- PREGUNTA -->
+<div id="question">
+
+<h2>Daniel te tiene un regalo, Cande 💝</h2>
+<p>¿Deseas abrirlo?</p>
+
+<div class="buttons">
+<button class="yes" onclick="openGift()">Sí ✨</button>
+<button class="no" id="noBtn">No 😜</button>
+</div>
+
+</div>
+
+<!-- CARTA -->
+<div class="letter" id="letter">
+
+<div class="letterBox">
+
+<h2>Una carta para ti 💌</h2>
+
+<p style="text-align:left; line-height:1.6;">
+
+Cande, quería escribirte esto porque hay cosas que a veces cuestan decir en persona.
+
+Sé que he cometido errores y de verdad lo siento.  
+Si en algún momento te hice sentir mal, quiero pedirte perdón de corazón.
+
+Quiero que sepas que las dos veces que nos hemos visto han sido momentos muy especiales para mí.  
+En esos momentos fui realmente feliz, y son recuerdos que guardo con mucho cariño.
+
+A veces uno no siempre demuestra bien lo que siente, pero quería que supieras que eres alguien muy importante para mí.
+
+Gracias por tomarte el tiempo de leer esto.  
+De verdad espero que puedas aceptar esta disculpa sincera.
+
+</p>
+
+<button onclick="showFlowers()" class="yes">
+Abrir tu regalo 🌷
+</button>
+
+</div>
+
+</div>
+
+<!-- FLORES -->
+<div class="bouquet" id="bouquet">
+
+<h2>Para ti 🌷</h2>
+
+<svg width="240" height="220" viewBox="0 0 240 220">
+
+<defs>
+
+<linearGradient id="petal" x1="0" y1="0" x2="0" y2="1">
+<stop offset="0%" stop-color="#ffd1dc"/>
+<stop offset="100%" stop-color="#ff4f87"/>
+</linearGradient>
+
+<radialGradient id="shine" cx="50%" cy="30%" r="70%">
+<stop offset="0%" stop-color="white" stop-opacity="0.9"/>
+<stop offset="100%" stop-color="white" stop-opacity="0"/>
+</radialGradient>
+
+</defs>
+
+<!-- flores -->
+
+<g transform="translate(70,70)">
+<rect x="0" y="80" width="3" height="100" fill="#4caf50"/>
+<ellipse cx="1.5" cy="60" rx="13" ry="18" fill="url(#petal)"/>
+<ellipse cx="1.5" cy="50" rx="8" ry="10" fill="url(#shine)"/>
+</g>
+
+<g transform="translate(100,55)">
+<rect x="0" y="90" width="3" height="100" fill="#4caf50"/>
+<ellipse cx="1.5" cy="70" rx="13" ry="18" fill="url(#petal)"/>
+<ellipse cx="1.5" cy="60" rx="8" ry="10" fill="url(#shine)"/>
+</g>
+
+<g transform="translate(130,65)">
+<rect x="0" y="80" width="3" height="100" fill="#4caf50"/>
+<ellipse cx="1.5" cy="60" rx="13" ry="18" fill="url(#petal)"/>
+<ellipse cx="1.5" cy="50" rx="8" ry="10" fill="url(#shine)"/>
+</g>
+
+<g transform="translate(160,75)">
+<rect x="0" y="70" width="3" height="100" fill="#4caf50"/>
+<ellipse cx="1.5" cy="50" rx="13" ry="18" fill="url(#petal)"/>
+<ellipse cx="1.5" cy="40" rx="8" ry="10" fill="url(#shine)"/>
+</g>
+
+</svg>
+
+</div>
+
+</div>
+
+<script>
+
+const noBtn=document.getElementById("noBtn");
+
+document.addEventListener("mousemove",(e)=>{
+
+const rect=noBtn.getBoundingClientRect();
+const btnX=rect.left+rect.width/2;
+const btnY=rect.top+rect.height/2;
+
+const distX=e.clientX-btnX;
+const distY=e.clientY-btnY;
+
+const distance=Math.sqrt(distX*distX+distY*distY);
+
+if(distance<120){
+
+const moveX=-distX*0.6;
+const moveY=-distY*0.6;
+
+noBtn.style.transform=`translate(${moveX}px,${moveY}px)`;
+
+}
+
+});
+
+function openGift(){
+
+document.getElementById("question").style.display="none";
+document.getElementById("letter").style.display="block";
+
+}
+
+function showFlowers(){
+
+document.getElementById("letter").style.display="none";
+document.getElementById("bouquet").style.display="block";
+
+}
+
+</script>
+
+<audio autoplay loop>
+<source src="WhatsApp Audio 2026-02-14 at 7.18.23 PM.mpeg" type="audio/mpeg">
+</audio>
+
+</body>
+</html>
